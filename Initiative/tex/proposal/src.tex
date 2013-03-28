@@ -1,0 +1,93 @@
+\documentclass[12pt,letter,titlepage]{article}
+% pour d\'efinir les caract\'eristiques g\'en\'erales du document
+%!TEX TS-program = pdflatexmk
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{listings}
+\usepackage[toc,acronym]{glossaries}
+\usepackage{hyperref}
+\usepackage[usenames,dvipsnames]{xcolor}
+\makeglossaries
+\usepackage{fancyhdr}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancyplain}
+\usepackage{pdfpages}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  language=python,                % the language of the code
+  basicstyle=\ttfamily,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=2,                   % the step between two line-numbers. If it's 1, each line 
+  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},      % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=2,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                   % show the filename of files included with \lstinputlisting;
+}
+
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
+
+\def\mytitle{CO250 :Assignment 1}
+\title{\mytitle}
+\definecolor{gray}{rgb}{0.3,0.3,0.3}
+\hypersetup{linkbordercolor={1 1 1},
+  colorlinks=true,
+  linkcolor=gray}
+\setcounter{tocdepth}{2}
+
+
+\author{Bastien Jacot-Guillarmod}
+\rhead{Christian Zommerfelds}
+\chead{\today}
+\lhead{Bastien Jacot-Guillarmod}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+  {\bf \Large 
+    ECE 456: Project Propasal\\
+    OIS: Online Initiative System\\
+    A Secure `We, the People'
+  }
+\end{center}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Abstract}
+We propose to implement a secure governmental website, to enable citizen of the country to sign popular initiatives in a secure way. It should provide protection mechanisms to ensure the same level of security as the pen and paper system.
+\section{Problem statement}
+`We, the People' is a petition system created by the White House that allows U.S. citizens to create and sign petitions online. Even if this is a great solution to increase the communication between taxpayers and the government, it is not suitable for initiatives. For instance, a non-U.S. citizen can easily create an account and sign petitions. Therefore, there is a need for a stricter protocol to ensure the indentity of a real voter.
+\section{Our solution}
+We propose to create a web server in a test environment which will provides the software prototype for such a system. A part of the registration process would not be electronic, therefore we will only plan this part and not implement it.\\
+We will use a secure protocol such as HTTPS to establish an encrypted connection between the voters and the server.
+
+\section{End-to-end security analysis}
+\section{Pitfalls of using our approach that we didn't address}
+\section{Usability issues}
+\section{References}
+
+ 
+\end{document}
