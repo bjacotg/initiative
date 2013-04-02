@@ -83,7 +83,7 @@ public class User {
         Messenger msgr = getSuperUser().getMessenger();
         try {
             PreparedStatement stmt;            
-            stmt = msgr.prepare("SELECT Password FROM Voter WHERE SIN=?");
+            stmt = msgr.prepare("SELECT Password FROM Voter WHERE ID=?");
          
             stmt.setString(1, userid);
             ResultSet rs = msgr.query(stmt);

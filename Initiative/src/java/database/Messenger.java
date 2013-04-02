@@ -88,7 +88,7 @@ public final class Messenger {
         try {
             // Connection to database
             //conn = datasource.getConnection(USER, PASSWORD);
-            conn = DriverManager.getConnection(DBProperties.CONN_URL, DBProperties.ADMIN_LOGIN, DBProperties.ADMIN_PASSWORD);
+            conn = DriverManager.getConnection(DBProperties.DB_NAME, DBProperties.ADMIN_LOGIN, DBProperties.ADMIN_PASSWORD);
             log.fine("Connection to database successful");
             return conn;
         } catch (SQLException e) {
