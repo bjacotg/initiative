@@ -13,25 +13,27 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Login</h1> <%
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+        <h1>Online Initiative System</h1>
+        <h2>Login</h2> <%
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-            if (username != null) {
-                User user = User.login(username, password);
-                if (user != null) {
-                    session.setAttribute("user", user);
-                    response.sendRedirect("home.jsp");
-                } else { %>
-                    <p>Login failed</p> <%
-                }
-            } %>
-            <form action="login.jsp" method="post">
-                <br/>Username: <input type="text" name="username">
-                <br/>Password: <input type="password" name="password">
-                <br/><input type="submit" value="Submit">
-            </form> <%
-            %>
-
+        if (username != null && password != null) {
+            User user = User.login(username, password);
+            if (user != null) {
+                session.setAttribute("user", user);
+                response.sendRedirect("home.jsp");
+            } else { %>
+                <p>Login failed</p> <%
+            }
+        } %>
+        <form action="login.jsp" method="post">
+            <table border="0">
+                <tr><td>Username:</td><td><input type="text" name="username"></td></tr>
+                <tr><td>Password:</td><td><input type="password" name="password"></td></tr>
+            </table>
+            <input type="submit" value="Submit">
+        </form>
+        <p>Don't have an account? <a href="register.jsp">Register now.</a></p>
     </body>
 </html>
