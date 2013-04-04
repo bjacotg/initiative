@@ -1,6 +1,8 @@
 package server;
 
 import database.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +31,19 @@ public class User {
 
     }
 
-
+    public static void newUser(String usr, String pass){
+        try {
+            PreparedStatement stmt = Messenger.getInstance().prepare("INSERT INTO Voter (Id, Password, Salt) VALUES (?, ?, ?);");
+            stmt.setString(1, usr);
+            stmt.setString(2, pass);
+            stmt.setString(3, "Chris");
+            Messenger.getInstance().update(stmt);
+            Messenger.getInstance().commit();
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 
     public String getLogin() {
@@ -94,14 +108,22 @@ public class User {
     }
     public boolean sign(Initiative init){
         try{
+            MessageDigest md = null;
+            try {
+                md = MessageDigest.getInstance("SHA-256");
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            byte[] hash = md.digest((userid+init.salt).getBytes());
             PreparedStatement stmt = messenger.prepare("INSERT INTO Vote VALUES (?,?)");
             stmt.setLong(1, init.id);
-            stmt.setString(2, userid);
-            messenger.query(stmt);
+            stmt.setString(2, new String(hash));
+            messenger.update(stmt);
             messenger.commit();
-            log.log(Level.FINE, "Voted!");
+            log.log(Level.INFO, "Voted!");
             return true;
         }catch(SQLException e){
+            
             return false;
         }
         
