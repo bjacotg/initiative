@@ -21,17 +21,11 @@ public class User {
 //    private Reader reader;
     private Messenger messenger;
 
-    public static User getSuperUser() {
-        if (superuser == null) {
-            superuser = new User(DBProperties.ADMIN_LOGIN,
-                    DBProperties.ADMIN_PASSWORD);
-        }
-        return superuser;
-    }
-
+    
     private User(String userid, String password) {
         this.userid = userid;
         this.password = password;
+        this.messenger = Messenger.getInstance();
 
     }
 
@@ -50,12 +44,6 @@ public class User {
         return password;
     }
 
-    public Messenger getMessenger() {
-        if (messenger == null) {
-            messenger = new Messenger();
-        }
-        return messenger;
-    }
 
 /*    public Creator getCreator() {
         if (creator == null) {
@@ -80,7 +68,7 @@ public class User {
 */
     public static User login(String userid, String password) {
 
-        Messenger msgr = getSuperUser().getMessenger();
+        Messenger msgr = Messenger.getInstance();
         try {
             PreparedStatement stmt;            
             stmt = msgr.prepare("SELECT Password FROM Voter WHERE ID=?");
@@ -104,6 +92,19 @@ public class User {
         }
         return null;
     }
-
+    public boolean sign(Initiative init){
+        try{
+            PreparedStatement stmt = messenger.prepare("INSERT INTO Vote VALUES (?,?)");
+            stmt.setLong(1, init.id);
+            stmt.setString(2, userid);
+            messenger.query(stmt);
+            messenger.commit();
+            log.log(Level.FINE, "Voted!");
+            return true;
+        }catch(SQLException e){
+            return false;
+        }
+        
+    }
 
 }

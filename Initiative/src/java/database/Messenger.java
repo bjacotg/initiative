@@ -10,8 +10,10 @@ public final class Messenger {
     private static final Logger log = Logger.getLogger(Messenger.class.getName());
     
     private Connection conn;
-    
-    public Messenger() {
+    private static class Holder{
+        public static final Messenger instance = new Messenger();
+    }
+    private Messenger() {
         try {
             Class.forName(DBProperties.DRIVER).newInstance();
             log.info("DBMS driver registered");
@@ -24,8 +26,11 @@ public final class Messenger {
         }
         conn = connect();
     }
+    public static Messenger getInstance(){        
+        return Holder.instance;      
+    }
     
-    boolean commit() {
+    public boolean commit() {
         try {
             update("COMMIT");
             log.fine("Transaction commited");

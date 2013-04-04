@@ -29,6 +29,7 @@ CREATE TABLE Comitee(
 
 CREATE TABLE Initiative(
     InitID integer AUTO_INCREMENT,
+    InitName char(40),
     ComiteeId char(40),
     CONSTRAINT PKInit PRIMARY KEY(InitID),
     CONSTRAINT FKInitCom FOREIGN KEY(ComiteeId) REFERENCES Comitee (Id)
@@ -43,5 +44,8 @@ CREATE TABLE Vote(
 );
 
 
+INSERT INTO Voter (Id, Password, Salt) VALUES ('root', 'root', 'root');
+INSERT INTO Comitee (Id, Password, Salt) VALUES ('SVP', 'SVP', 'SVP');
+INSERT INTO Initiative (InitName, ComiteeID) VALUES ('Hello, world!', 'SVP');
 
 SET AUTOCOMMIT = 0;
